@@ -1,21 +1,22 @@
 // Assignment code here
-var passwordInfo = {
+var passwordInfo = { // variable used to collect user inputs. Starts at null and the user sets values if desired
   length: null,
   lowercase: null,
   uppercase: null,
 	numbers: null,
   specialCharacters: null
 };
-var charactersArray = [];
 
-var buttonPrompt = function(){
+var charactersArray = []; // variable used to store the chosen characters
+
+var buttonPrompt = function(){ // function used to call other functions in a specific order
 	window.alert("Hello there! Please answer the following questions for your own randomized password.");
   lengthPrompt();
-	typePrompt();
-	writePassword();
+	typePrompt(); 
+	writePassword(); 
 }
 
-var lengthPrompt = function(){
+var lengthPrompt = function(){ // function to prompt users for a password length
   var lengthQuestion = window.prompt("How long would you like your password to be? (Minimum of 8 and a maximum of 128)");
   if(lengthQuestion >= 8){
     if(lengthQuestion < 129){
@@ -34,7 +35,7 @@ var lengthPrompt = function(){
   }
 }
 
-var typePrompt = function(){
+var typePrompt = function(){ // function to prompt users for desired character types
 	var lowercaseQuestion = window.confirm("Would you like lowercase letters to be included in your password?")
 	if(lowercaseQuestion){
 		passwordInfo.lowercase = true;
@@ -53,9 +54,10 @@ var typePrompt = function(){
 	}
 }
 
-var generatePassword = function(){
+var generatePassword = function(){ //function to generate the password based on the user inputs
 	var passwordString = ""
 
+	// This section makes arrays inside of the charactersArray
 	if(passwordInfo.lowercase == true){
 		var lowercaseCharacters = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z'];
 		charactersArray.push(lowercaseCharacters);
@@ -74,25 +76,20 @@ var generatePassword = function(){
 		charactersArray.push(specials);
 	}
 
-	console.log(charactersArray);
-
-	for (i=0;i<passwordInfo.length;i++){
-		var randomCounter = Math.floor((Math.random() * charactersArray.length))
-	
+	for (i=0;i<passwordInfo.length;i++){ // for loop that makes the password
+		var randomCounter = Math.floor((Math.random() * charactersArray.length)) 
 		var randomCharacter = Math.floor((Math.random() * charactersArray[randomCounter].length))
-		console.log(charactersArray[randomCounter][randomCharacter]);
-		passwordString += charactersArray[randomCounter][randomCharacter];
-		}
-		return passwordString;
+		passwordString += charactersArray[randomCounter][randomCharacter]; //takes the specified character in the specified array and puts it in the string
 	}
-
-
+		
+	return passwordString;
+}
 
 // Get references to the #generate element
 var generateBtn = document.querySelector("#generate");
 
 // Write password to the #password input
-function writePassword() {
+function writePassword() { // final function which outputs the password
   var password = generatePassword();
   var passwordText = document.querySelector("#password");
   passwordText.value = password;
