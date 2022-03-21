@@ -3,6 +3,7 @@ var passwordInfo = {
   length: null,
   lowercase: null,
   uppercase: null,
+	numbers: null,
   specialCharacters: null
 };
 
@@ -15,7 +16,6 @@ var buttonPrompt = function(){
 
 var lengthPrompt = function(){
   var lengthQuestion = window.prompt("How long would you like your password to be? (Minimum of 8 and a maximum of 128)");
-  console.log(lengthQuestion);
   if(lengthQuestion >= 8){
     if(lengthQuestion < 129){
 			lengthQuestion = Math.floor(lengthQuestion);
@@ -34,11 +34,26 @@ var lengthPrompt = function(){
 }
 
 var typePrompt = function(){
-
+	var lowercaseQuestion = window.confirm("Would you like lowercase letters to be included in your password?")
+	if(lowercaseQuestion){
+		passwordInfo.lowercase = true;
+	}
+	var uppercaseQuestion = window.confirm("Would you like uppercase letters to be included in your password?")
+	if(uppercaseQuestion){
+		passwordInfo.uppercase = true;
+	}
+	var numbersQuestion = window.confirm("Would you like numbers to be included in your password?")
+	if(numbersQuestion){
+		passwordInfo.numbers = true;
+	}
+	var specialCharactersQuestion = window.confirm("Would you like special characters to be included in your password?")
+	if(specialCharactersQuestion){
+		passwordInfo.specialCharacters = true;
+	}
 }
 
 var generatePassword = function(){
-
+console.log(passwordInfo);
 }
 
 // Get references to the #generate element
