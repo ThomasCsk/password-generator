@@ -6,12 +6,13 @@ var passwordInfo = {
 	numbers: null,
   specialCharacters: null
 };
+var charactersArray = [];
 
 var buttonPrompt = function(){
 	window.alert("Hello there! Please answer the following questions for your own randomized password.");
   lengthPrompt();
 	typePrompt();
-	generatePassword();
+	writePassword();
 }
 
 var lengthPrompt = function(){
@@ -53,8 +54,39 @@ var typePrompt = function(){
 }
 
 var generatePassword = function(){
-console.log(passwordInfo);
-}
+	var passwordString = ""
+
+	if(passwordInfo.lowercase == true){
+		var lowercaseCharacters = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z'];
+		charactersArray.push(lowercaseCharacters);
+	}
+	if(passwordInfo.uppercase == true){
+		var uppercaseCharacters = ['A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z'];
+		charactersArray.push(uppercaseCharacters);
+	}
+	if(passwordInfo.numbers == true){
+		var numberCharacters = ['1','2','3','4','5','6','7','8','9','0'];
+		charactersArray.push(numberCharacters);
+
+	}
+	if(passwordInfo.specialCharacters == true){
+		var specials = [' ','!','"','#','$','%','&','\'','(',')','*','+',',','-','.','/',':',';','<','=','>','?','@','[',']','\\','^','_','`','{','|','}','~'];
+		charactersArray.push(specials);
+	}
+
+	console.log(charactersArray);
+
+	for (i=0;i<passwordInfo.length;i++){
+		var randomCounter = Math.floor((Math.random() * charactersArray.length))
+	
+		var randomCharacter = Math.floor((Math.random() * charactersArray[randomCounter].length))
+		console.log(charactersArray[randomCounter][randomCharacter]);
+		passwordString += charactersArray[randomCounter][randomCharacter];
+		}
+		return passwordString;
+	}
+
+
 
 // Get references to the #generate element
 var generateBtn = document.querySelector("#generate");
@@ -63,7 +95,6 @@ var generateBtn = document.querySelector("#generate");
 function writePassword() {
   var password = generatePassword();
   var passwordText = document.querySelector("#password");
-
   passwordText.value = password;
 
 }
