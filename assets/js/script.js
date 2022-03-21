@@ -1,5 +1,29 @@
 // Assignment code here
+var passwordInfo = {
+  length: null,
+  lowercase: null,
+  uppercase: null,
+  specialCharacters: null
+};
 
+var buttonPrompt = function(){
+	window.alert("Hello there! Please answer the following questions for your own randomized password.");
+  lengthPrompt();
+	typePrompt();
+	generatePassword();
+}
+
+var lengthPrompt = function(){
+
+}
+
+var typePrompt = function(){
+
+}
+
+var generatePassword = function(){
+
+}
 
 // Get references to the #generate element
 var generateBtn = document.querySelector("#generate");
@@ -14,4 +38,4 @@ function writePassword() {
 }
 
 // Add event listener to generate button
-generateBtn.addEventListener("click", writePassword);
+generateBtn.addEventListener("click", buttonPrompt);
