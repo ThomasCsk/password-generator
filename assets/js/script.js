@@ -14,7 +14,23 @@ var buttonPrompt = function(){
 }
 
 var lengthPrompt = function(){
-
+  var lengthQuestion = window.prompt("How long would you like your password to be? (Minimum of 8 and a maximum of 128)");
+  console.log(lengthQuestion);
+  if(lengthQuestion >= 8){
+    if(lengthQuestion < 129){
+			lengthQuestion = Math.floor(lengthQuestion);
+      window.alert("Thank you! Your password will be " + lengthQuestion + " characters long.");
+			passwordInfo.length = lengthQuestion
+    }
+    else{
+      window.alert("Please enter a valid number. The number must be between 8 and 128.")
+      lengthPrompt()
+    }
+  }
+  else{
+    window.alert("Please enter a valid number. The number must be between 8 and 128.")
+    lengthPrompt()
+  }
 }
 
 var typePrompt = function(){
